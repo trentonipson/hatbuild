@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Hero with Scrolling Images</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+    <section class="hero">
+        <!-- EMAIL FORM OVERLAY -->
+        <div class="email-form-overlay" id="formOverlay">
+            <div class="signup-container">
+                <h1 class="hero-title">Coming Soon</h1>
+                <p class="hero-subtitle">Get notified when we launch</p>
+                
+                <!-- SUCCESS MESSAGE -->
+                <div class="success-message" id="successMsg">
+                    ✅ Thank you! We'll notify you soon.
+                </div>
+
+                <!-- EMAIL FORM -->
+                <form id="emailForm" style="display: none;">
+                    <div class="form-group">
+                        <input 
+                            type="email" 
+                            class="form-input" 
+                            id="emailInput" 
+                            placeholder="Enter your email address"
+                            required
+                        >
+                    </div>
+                    
+                    <div class="g-recaptcha" 
+                         data-sitekey="6LeloPQrAAAAAKoJF27Q0GkSws8j0SwnNQu-RgcV">
+                    </div>
+                    
+                    <button type="submit" class="notify-btn">
+                        Notify Me
+                    </button>
+                </form>
+
+                <!-- NOTIFY BUTTON (Initial) -->
+                <button type="button" class="notify-btn" id="notifyBtn">
+                    Notify Me
+                </button>
+            </div>
+        </div>
+        
+
+        <!-- Row 1: Top Row -->
+        <div class="scroll-row row-1">
+            <div class="scroll-container">
+                <!-- Duplicate images for seamless loop -->
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" alt="Nature 1"></div>
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop" alt="Nature 2"></div>
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop" alt="Nature 3"></div>
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop" alt="Nature 4"></div>
+                <!-- Duplicates for seamless scroll -->
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" alt="Nature 1"></div>
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop" alt="Nature 2"></div>
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" alt="Nature 1"></div>
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop" alt="Nature 2"></div>
+            </div>
+        </div>
+
+        <!-- Row 2: Middle Row -->
+        <div class="scroll-row row-2">
+            <div class="scroll-container">
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&h=600&fit=crop" alt="Urban 1"></div>
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop" alt="Urban 2"></div>
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1518509562904-1d83a995db6f?w=800&h=600&fit=crop" alt="Urban 3"></div>
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=800&h=600&fit=crop" alt="Urban 4"></div>
+                <!-- Duplicates -->
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&h=600&fit=crop" alt="Urban 1"></div>
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop" alt="Urban 2"></div>
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&h=600&fit=crop" alt="Urban 1"></div>
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop" alt="Urban 2"></div>
+            </div>
+        </div>
+
+        <!-- Row 3: Bottom Row -->
+        <div class="scroll-row row-3">
+            <div class="scroll-container">
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=800&h=600&fit=crop" alt="Abstract 1"></div>
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7e71?w=800&h=600&fit=crop" alt="Abstract 2"></div>
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=800&h=600&fit=crop" alt="Abstract 3"></div>
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&h=600&fit=crop" alt="Abstract 4"></div>
+                <!-- Duplicates -->
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=800&h=600&fit=crop" alt="Abstract 1"></div>
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7e71?w=800&h=600&fit=crop" alt="Abstract 2"></div>
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=800&h=600&fit=crop" alt="Abstract 1"></div>
+                <div class="scroll-item"><img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7e71?w=800&h=600&fit=crop" alt="Abstract 2"></div>
+            </div>
+        </div>
+    </section>
+    <script>
+        // FORM FUNCTIONALITY
+        const notifyBtn = document.getElementById('notifyBtn');
+        const emailForm = document.getElementById('emailForm');
+        const formOverlay = document.getElementById('formOverlay');
+        const emailInput = document.getElementById('emailInput');
+        const successMsg = document.getElementById('successMsg');
+
+        // 1. CLICK NOTIFY BUTTON → SHOW FORM
+        notifyBtn.addEventListener('click', function() {
+            notifyBtn.style.display = 'none';
+            emailForm.style.display = 'block';
+            formOverlay.classList.add('active');
+            emailInput.focus();
+        });
+
+        // 2. FORM SUBMISSION
+        emailForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = emailInput.value;
+            const recaptchaResponse = grecaptcha.getResponse();
+            
+            if (!email || !recaptchaResponse) {
+                alert('Please enter email and complete reCAPTCHA');
+                return;
+            }
+
+            // SHOW SUCCESS
+            successMsg.classList.add('show');
+            emailForm.style.display = 'none';
+            
+            // SIMULATE API CALL (Replace with your backend)
+            console.log('Email:', email);
+            console.log('reCAPTCHA:', recaptchaResponse);
+            
+            // Reset reCAPTCHA after 2 seconds
+            setTimeout(() => {
+                grecaptcha.reset();
+            }, 2000);
+        });
+
+        // 3. PAUSE/RESUME SCROLLING ON FORM INTERACTION
+        emailInput.addEventListener('focus', () => {
+            formOverlay.classList.add('active');
+        });
+
+        emailInput.addEventListener('blur', () => {
+            if (!emailInput.value) {
+                formOverlay.classList.remove('active');
+            }
+        });
+
+        // 4. ESC KEY TO CLOSE FORM
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && emailForm.style.display === 'block') {
+                emailForm.style.display = 'none';
+                notifyBtn.style.display = 'block';
+                formOverlay.classList.remove('active');
+                successMsg.classList.remove('show');
+                grecaptcha.reset();
+            }
+        });
+    </script>
+</body>
+</html>
