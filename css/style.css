@@ -82,6 +82,7 @@
             .scroll-item { min-width: 50vw; }
             .signup-container { padding: 2rem 1.5rem; }
             .g-recaptcha { transform: scale(0.77); }
+            .form-textarea { min-height: 80px; }
         }
 
         @media (max-width: 480px) {
@@ -180,26 +181,45 @@
             margin-bottom: 1.5rem;
         }
 
-        .form-input {
+        .form-input, .form-textarea {
             width: 100%;
             padding: 1rem 1.2rem;
             background: rgba(255, 255, 255, 0.1);
             border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
+            border-radius: 12px;
             color: white;
             font-size: 1rem;
             outline: none;
             transition: all 0.3s ease;
+            resize: vertical;
         }
 
-        .form-input::placeholder {
+        .form-textarea {
+            min-height: 100px;
+            max-height: 200px;
+        }
+
+        .form-input::placeholder, .form-textarea::placeholder {
             color: rgba(255, 255, 255, 0.7);
         }
 
-        .form-input:focus {
+        .form-input:focus, .form-textarea:focus {
             border-color: #fff;
             background: rgba(255, 255, 255, 0.15);
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        /* CHARACTER COUNTER */
+        .char-counter {
+            position: absolute;
+            bottom: 0.5rem;
+            right: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+        }
+
+        .char-counter.warning {
+            color: #ff6b6b;
         }
 
         /* NOTIFY BUTTON */

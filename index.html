@@ -7,13 +7,15 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- Google reCAPTCHA -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
     <section class="hero">
-        <!-- EMAIL FORM OVERLAY -->
+        <!-- EMAIL + MESSAGE FORM OVERLAY -->
         <div class="email-form-overlay" id="formOverlay">
             <div class="signup-container">
-                <h1 class="hero-title">Coming Soon</h1>
+                <h1 class="hero-title">Visual Journey</h1>
                 <p class="hero-subtitle">Get notified when we launch</p>
                 
                 <!-- SUCCESS MESSAGE -->
@@ -21,7 +23,7 @@
                     ✅ Thank you! We'll notify you soon.
                 </div>
 
-                <!-- EMAIL FORM -->
+                <!-- EMAIL + MESSAGE FORM -->
                 <form id="emailForm" style="display: none;">
                     <div class="form-group">
                         <input 
@@ -31,14 +33,16 @@
                             placeholder="Enter your email address"
                             required
                         >
-                        <textarea
-                            rows="5"
-                            class="form-input"
-                            id="messageInput"
-                            placeholder="Message"
-                            required
-                        >
-                        </textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea 
+                            class="form-textarea" 
+                            id="messageInput" 
+                            placeholder="Tell us what you're most excited about (optional)"
+                            maxlength="500"
+                        ></textarea>
+                        <div class="char-counter" id="charCounter">0/500</div>
                     </div>
                     
                     <div class="g-recaptcha" 
@@ -46,7 +50,7 @@
                     </div>
                     
                     <button type="submit" class="notify-btn">
-                        Notify Me
+                        Send Message
                     </button>
                 </form>
 
@@ -106,15 +110,26 @@
     </section>
     <footer><p>created by The Peach Ave</p></footer>
     <script>
-        // FORM FUNCTIONALITY
+        // Initialize EmailJS - REPLACE WITH YOUR USER ID
+        emailjs.init("YOUR_USER_ID_HERE");
+
+        // FORM ELEMENTS
         const notifyBtn = document.getElementById('notifyBtn');
         const emailForm = document.getElementById('emailForm');
         const formOverlay = document.getElementById('formOverlay');
         const emailInput = document.getElementById('emailInput');
         const messageInput = document.getElementById('messageInput');
         const successMsg = document.getElementById('successMsg');
+        const charCounter = document.getElementById('charCounter');
 
-        // 1. CLICK NOTIFY BUTTON → SHOW FORM
+        // 1. CHARACTER COUNTER
+        messageInput.addEventListener('input', function() {
+            const length = this.value.length;
+            charCounter.textContent = `${length}/500`;
+            charCounter.classList.toggle('warning', length > 450);
+        });
+
+        // 2. CLICK NOTIFY → SHOW FORM
         notifyBtn.addEventListener('click', function() {
             notifyBtn.style.display = 'none';
             emailForm.style.display = 'block';
@@ -122,11 +137,12 @@
             emailInput.focus();
         });
 
-        // 2. FORM SUBMISSION
+        // 3. FORM SUBMISSION
         emailForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const email = emailInput.value;
+            const message = messageInput.value.trim();
             const recaptchaResponse = grecaptcha.getResponse();
             
             if (!email || !recaptchaResponse) {
@@ -134,32 +150,42 @@
                 return;
             }
 
-            // SHOW SUCCESS
-            successMsg.classList.add('show');
-            emailForm.style.display = 'none';
-            
-            // SIMULATE API CALL (Replace with your backend)
-            console.log('Email:', email);
-            console.log('reCAPTCHA:', recaptchaResponse);
-            
-            // Reset reCAPTCHA after 2 seconds
-            setTimeout(() => {
+            // SEND VIA EmailJS
+            try {
+                await emailjs.send("YOUR_SERVICE_ID_HERE", "YOUR_TEMPLATE_ID_HERE", {
+                    email: email,
+                    message: message || 'No message provided',
+                    'g-recaptcha-response': recaptchaResponse
+                });
+                
+                // SUCCESS
+                successMsg.innerHTML = `✅ Thank you ${email}! We'll notify you soon.`;
+                successMsg.classList.add('show');
+                emailForm.style.display = 'none';
+                
+                // RESET
                 grecaptcha.reset();
-            }, 2000);
-        });
-
-        // 3. PAUSE/RESUME SCROLLING ON FORM INTERACTION
-        emailInput.addEventListener('focus', () => {
-            formOverlay.classList.add('active');
-        });
-
-        emailInput.addEventListener('blur', () => {
-            if (!emailInput.value) {
-                formOverlay.classList.remove('active');
+                
+            } catch (error) {
+                console.error('EmailJS error:', error);
+                alert('Oops! Something went wrong. Try again.');
             }
         });
 
-        // 4. ESC KEY TO CLOSE FORM
+        // 4. PAUSE/RESUME SCROLLING
+        [emailInput, messageInput].forEach(input => {
+            input.addEventListener('focus', () => {
+                formOverlay.classList.add('active');
+            });
+            
+            input.addEventListener('blur', () => {
+                if (!emailInput.value) {
+                    formOverlay.classList.remove('active');
+                }
+            });
+        });
+
+        // 5. ESC KEY TO CLOSE
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && emailForm.style.display === 'block') {
                 emailForm.style.display = 'none';
@@ -167,6 +193,8 @@
                 formOverlay.classList.remove('active');
                 successMsg.classList.remove('show');
                 grecaptcha.reset();
+                messageInput.value = '';
+                charCounter.textContent = '0/500';
             }
         });
     </script>
