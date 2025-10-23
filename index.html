@@ -31,6 +31,14 @@
                             placeholder="Enter your email address"
                             required
                         >
+                        <textarea
+                            rows="5"
+                            class="form-input"
+                            id="messageInput"
+                            placeholder="Message"
+                            required
+                        >
+                        </textarea>
                     </div>
                     
                     <div class="g-recaptcha" 
@@ -102,6 +110,7 @@
         const emailForm = document.getElementById('emailForm');
         const formOverlay = document.getElementById('formOverlay');
         const emailInput = document.getElementById('emailInput');
+        const messageInput = document.getElementById('messageInput');
         const successMsg = document.getElementById('successMsg');
 
         // 1. CLICK NOTIFY BUTTON → SHOW FORM
