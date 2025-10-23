@@ -111,7 +111,7 @@
     <footer><p>created by The Peach Ave</p></footer>
     <script>
         // Initialize EmailJS - REPLACE WITH YOUR USER ID
-        emailjs.init("YOUR_USER_ID_HERE");
+        emailjs.init("Trents-Gmail");
 
         // FORM ELEMENTS
         const notifyBtn = document.getElementById('notifyBtn');
@@ -152,7 +152,7 @@
 
             // SEND VIA EmailJS
             try {
-                await emailjs.send("YOUR_SERVICE_ID_HERE", "YOUR_TEMPLATE_ID_HERE", {
+                await emailjs.send("service_juigwjx", "template_5cnp8af", {
                     email: email,
                     message: message || 'No message provided',
                     'g-recaptcha-response': recaptchaResponse
